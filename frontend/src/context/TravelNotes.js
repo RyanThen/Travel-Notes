@@ -1,9 +1,24 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useContext } from "react";
 import axios from 'axios';
+
+import NavigationContext from "./Navigation";
 
 const TravelNotesContext = createContext();
 
 function TravelNotesProvider({ children }) {
+
+  const { navigate } = useContext(NavigationContext)
+  const [activeCountry, setActiveCountry] = useState(null);
+
+  const handleCountryClick = async (e) => {
+    const countryCode = e.target.id;
+
+    setActiveCountry(countryCode)
+
+    navigate('/country-page');
+
+    console.log(activeCountry);
+  }
 
   const getCountryCategories = async () => {
     try {
@@ -19,7 +34,8 @@ function TravelNotesProvider({ children }) {
   };
 
   const travelNotesContextProviderObject = {
-    getCountryCategories
+    getCountryCategories,
+    handleCountryClick
   };
 
   return (
