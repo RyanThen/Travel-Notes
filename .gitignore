@@ -1,0 +1,28 @@
+# Root folder
+.DS_Store
+
+# Backend folder
+backend/node_modules
+backend/package-lock.json
+backend/.env
+backend/.DS_Store
+
+# Frontend folder
+frontend/node_modules
+frontend/.pnp
+frontend/.pnp.js
+
+frontend/coverage
+
+frontend/build
+frontend/package-lock.json
+
+frontend/.DS_Store
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
