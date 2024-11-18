@@ -3,6 +3,8 @@
 import Route from './components/Route';
 import Link from './components/Link';
 
+import { useEffect, useContext } from 'react';
+
 import HomePage from './pages/HomePage';
 import CountryPage from './pages/CountryPage';
 import CategoryPage from './pages/CategoryPage';
@@ -10,12 +12,17 @@ import CreateUserPage from './pages/CreateUserPage';
 import CreateNotePage from './pages/CreateNotePage';
 
 // import NavigationContext from './context/Navigation';
-// import TravelNotesContext from './context/TravelNotes';
+import TravelNotesContext from './context/TravelNotes';
 
 function App() {
 
-  // const travelNotes = useContext(TravelNotesContext);
-  // const navigationContext = useContext(NavigationContext);
+
+// const navigationContext = useContext(NavigationContext);
+  const { getCountryCategories } = useContext(TravelNotesContext);
+
+  useEffect(() => {
+    getCountryCategories();
+  },[]);
 
   return (
     

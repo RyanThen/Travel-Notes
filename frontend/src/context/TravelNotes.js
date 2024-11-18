@@ -9,15 +9,14 @@ function TravelNotesProvider({ children }) {
 
   const { navigate } = useContext(NavigationContext)
   const [activeCountry, setActiveCountry] = useState(null);
+  const [categoryList, setCategoryList] = useState([]);
 
-  const handleCountryClick = async (e) => {
+  const handleCountryClick = (e) => {
     const countryCode = e.target.id;
 
-    setActiveCountry(countryCode)
+    setActiveCountry(countryCode);
 
     navigate('/country-page');
-
-    console.log(activeCountry);
   }
 
   const getCountryCategories = async () => {
@@ -26,15 +25,18 @@ function TravelNotesProvider({ children }) {
       const res = await axios.get('http://localhost:3001/categories', {
         headers: { 'Content-Type': 'Access-Control-Allow-Origin' }
       });
-      console.log(res);
-  
+
+      setCategoryList(res.data.rows);
+
     } catch (err) {
       console.error(err);
     }
   };
 
   const travelNotesContextProviderObject = {
+    activeCountry,
     getCountryCategories,
+    categoryList,
     handleCountryClick
   };
 
