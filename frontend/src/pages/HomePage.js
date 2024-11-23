@@ -3,7 +3,7 @@ import WorldMap from "../components/WorldMap";
 function HomePage() {
 
   return (
-    <div>
+    <div className="max-w-screen-xl mx-auto">
       <WorldMap />
     </div>
   )
