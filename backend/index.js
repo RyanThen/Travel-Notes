@@ -30,7 +30,7 @@ app.use(
 );
 
 app.get("/categories", async (req, res) => {
-  const categories = await db.query("SELECT * FROM category");
+  const categories = await db.query("SELECT * FROM categories");
 
   // let categoryList = [];
 

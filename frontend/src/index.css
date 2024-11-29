@@ -6,5 +6,5 @@
 .world-map-graphic path { fill: #F8F8F8; stroke: grey; cursor: pointer; transition: fill 150ms; }
 .world-map-graphic path:hover { fill: lightgrey; transition: fill 150ms; }
 
-.accordion-open { grid-template-rows: 0fr; }
-.accordion-close { grid-template-rows: 1fr; }
+.accordion-close { grid-template-rows: 0fr; }
+.accordion-open { grid-template-rows: 1fr; }
