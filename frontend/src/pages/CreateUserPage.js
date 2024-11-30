@@ -1,74 +1,42 @@
+import NationalityDropdown from '../components/NationalityDropdown';
+
 function CreateUserPage() {
+
   return (
     <div>
-      <form>
-        <div class='fieldset'>
-          <label for='text1'>Text</label>
-          <input type='text' id='text1' placeholder='Field Text'/>
+      
+      <form className="max-w-sm mx-auto">
+        <div className="mb-5">
+          <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+          <input type="email" id="email" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="john.doe@example.com" required />
         </div>
-        <div class='fieldset'>
-          <label for='textarea1'>Textarea</label>
-          <textarea id='textarea1' placeholder='Field Textarea'></textarea>
+        <div className="mb-5">
+          <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+          <input type="text" id="username" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="johndoe123" required />
         </div>
-        <div class='fieldset'>
-          <label for='select1'>Select</label>
-          <select id='select1' placeholder='Field Textarea'>
-            <option value=''>Select</option>
-            <option value='Select One'>Select One</option>
-            <option value='Select Two'>Select Two</option>
-            <option value='Select Three'>Select Three</option>
-            <option value='Select Four'>Select Four</option>
-          </select>
+        <div className="mb-5">
+          <label htmlFor="nationality" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nationality</label>
+
+          <NationalityDropdown />
+
         </div>
-        <div class='fieldset'>
-          <div class='checkbox_block'>
-            <input type='checkbox' id='checkbox1'/>
-            <label for='checkbox1'>Checkbox 1</label>
+        <div className="mb-5">
+          <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+          <input type="password" id="password" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
+        </div>
+        <div className="mb-5">
+          <label htmlFor="repeat-password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Repeat password</label>
+          <input type="password" id="repeat-password" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
+        </div>
+        <div className="flex items-start mb-5">
+          <div className="flex items-center h-5">
+            <input id="terms" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
           </div>
-          <div class='checkbox_block'>
-            <input type='checkbox' id='checkbox2'/>
-            <label for='checkbox2'>Checkbox 2</label>
-          </div>
+          <label htmlFor="terms" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <a href="#" className="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a></label>
         </div>
-        <div class='fieldset'>
-          <div class='radio_block'>
-            <input type='radio' name='radio1' id='radio1'/>
-            <label for='radio1'>Radio 1</label>
-          </div>
-          <div class='radio_block'>
-            <input type='radio' name='radio1' id='radio2'/>
-            <label for='radio2'>Radio 2</label>
-          </div>
-        </div>
-        <div class='fieldset'>
-          <button type='submit'>Submit Form</button>
-        </div>
+        <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register new account</button>
       </form>
-      <form>
-        <div class='fieldset is-invalid'>
-          <label for='text2'>Text (invalid)</label>
-          <input type='text' id='text2' placeholder='Field Text'/>
-          <div class='message-invalid'>Bitte geben Sie einen Text ein</div>
-        </div>
-        <div class='fieldset is-invalid'>
-          <label for='textarea2'>Textarea (invalid)</label>
-          <textarea id='textarea2' placeholder='Field Textarea'></textarea>
-          <div class='message-invalid'>Details about what is invalid.</div>
-        </div>
-        <div class='fieldset error'>
-          <label for='select1'>Select (invalid)</label>
-          <select id='select1' placeholder='Field Textarea'>
-            <option value=''>Choose</option>
-            <option value='Choose'>Choose</option>
-            <option value='Choose'>Choose</option>
-            <option value='Choose'>Choose</option>
-            <option value='Choose'>Choose</option>
-          </select>
-          <div class='message-error'>Details about what is invalid.</div>
-        </div>
-      </form>
-      <div class='message message--success'>Success message</div>
-      <div class='message message--warning'>Warning message</div>
+
     </div>
   )
 }

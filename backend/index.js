@@ -41,6 +41,12 @@ app.get("/categories", async (req, res) => {
   res.json(categories);
 });
 
+app.get("/countries", async (req, res) => {
+  const countries = await db.query("SELECT * FROM countries");
+
+  res.json(countries);
+});
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
