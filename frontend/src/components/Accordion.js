@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import classNames from 'classnames';
 
-// Do I need to add an AccordionPage component that brings in a data set (from the database)?  I would then loop through the data to create accordions?  Is this better handled to set up the loop individually on whichever page I need the accordions in order to make the accordion component more flexible?
+// Should I add an AccordionPage component that brings in a data set (from the database)?  It would then loop through the data to create multiple accordions?  Is this better handled to set up the loop individually on whichever page I need the accordions in order to make the accordion component more flexible?
 
 function Accordion({ title, children, ...rest }) {
   const [isOpen, setIsOpen] = useState(false);

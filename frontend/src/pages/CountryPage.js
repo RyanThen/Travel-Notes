@@ -7,7 +7,9 @@ import Accordion from '../components/Accordion';
 function CountryPage() {
   const { activeCountry, categoryList } = useContext(TravelNotesContext);
 
-  // Next Step:  query the database and grab all travel notes related to each accordion title so I can add it to the accordion content (children)
+  // Next Steps:  
+  // 1. query the database and grab all travel notes related to each accordion title so I can add it to the accordion content (children)
+  // 2. add country statistics api for useful country info
 
   const renderedCategoryList = categoryList.map((category, index) => {
     return <Accordion title={category.category_name} key={index} className="my-3">Content Here</Accordion>

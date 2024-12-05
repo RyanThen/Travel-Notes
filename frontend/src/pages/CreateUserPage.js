@@ -3,12 +3,8 @@ import axios from 'axios';
 import NationalityDropdown from '../components/NationalityDropdown';
 
 function CreateUserPage() {
-
-  // Continue the handleSubmit() function and post the new user to the database. Sanitize the values being submitted in the form first.  Should this be done in the CreateUserPage or would this be better to do in the TravelNotes context?
   
-  // Add a login button to the navigation on the homepage and create a login page.  Once the login credentials are sent to the backend, do some logic there to find the correct user and send it back to the frontend.
-  
-  // Do I create a function or variable in the TravelNotes context for logged in user?  Do some research on this first before you start building.
+  // Should I create a function or variable in the TravelNotes context for logged in user?  Think about this!
 
   const [formData, setFormData] = useState({ email: '', username: '', nationality: 'Afghanistan', password: '', repeatPassword: '' });
 
@@ -21,6 +17,8 @@ function CreateUserPage() {
     e.preventDefault();
 
     console.log(formData);
+
+    // Add better form validation and form sanitization
 
     await axios.post('http://localhost:3001/user', { formData });
   }
