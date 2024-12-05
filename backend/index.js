@@ -21,6 +21,7 @@ const db = new pg.Client({
 
 db.connect();
 
+app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(
@@ -29,14 +30,10 @@ app.use(
   })
 );
 
+// Add error handling to routes
+
 app.get("/categories", async (req, res) => {
   const categories = await db.query("SELECT * FROM categories");
-
-  // let categoryList = [];
-
-  // categories.rows.forEach( category => {
-  //   categories.push(category);
-  // });
 
   res.json(categories);
 });
@@ -45,6 +42,17 @@ app.get("/countries", async (req, res) => {
   const countries = await db.query("SELECT * FROM countries");
 
   res.json(countries);
+});
+
+app.post("/user", async (req, res) => {
+  const formData = req.body.formData;
+  console.log(formData);
+
+  // * still need to sanitize fields coming from create user form * //
+  await db.query('INSERT INTO users(username, user_pw, nationality) VALUES($1, $2, $3)', [formData.username, formData.password, formData.nationality]);
+
+  res.status(200);
+  // res.status(200).redirect('/');
 });
 
 app.listen(port, () => {

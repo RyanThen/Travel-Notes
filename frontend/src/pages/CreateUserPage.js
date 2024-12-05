@@ -1,21 +1,28 @@
 import { useState } from 'react';
+import axios from 'axios';
 import NationalityDropdown from '../components/NationalityDropdown';
 
 function CreateUserPage() {
 
-  const [formData, setFormData] = useState({ email: '', username: '', nationality: '', password: '', repeatPassword: '' });
+  // Continue the handleSubmit() function and post the new user to the database. Sanitize the values being submitted in the form first.  Should this be done in the CreateUserPage or would this be better to do in the TravelNotes context?
+  
+  // Add a login button to the navigation on the homepage and create a login page.  Once the login credentials are sent to the backend, do some logic there to find the correct user and send it back to the frontend.
+  
+  // Do I create a function or variable in the TravelNotes context for logged in user?  Do some research on this first before you start building.
+
+  const [formData, setFormData] = useState({ email: '', username: '', nationality: 'Afghanistan', password: '', repeatPassword: '' });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     console.log(formData);
 
-    // Add post request here.  Add post route in backend.
+    await axios.post('http://localhost:3001/user', { formData });
   }
 
   return (
