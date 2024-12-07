@@ -55,6 +55,19 @@ app.post("/user", async (req, res) => {
   // res.status(200).redirect('/');
 });
 
+app.post("/login", async (req, res) => {
+  const formData = req.body.formData;
+
+  // * still need to sanitize fields coming from create user form * //
+  const user = await db.query("SELECT * FROM users WHERE username = $1 AND user_pw = $2", [formData.username, formData.password]);
+
+  console.log(user);
+
+  // Add conditional logic for if user is not found, then add a function/variable to TravelNotes context for currentUser
+  res.json(user);
+
+});
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
