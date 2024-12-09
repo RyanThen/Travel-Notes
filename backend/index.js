@@ -56,15 +56,18 @@ app.post("/user", async (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-  const formData = req.body.formData;
+  const formData = req.body.loginFormData;
 
   // * still need to sanitize fields coming from create user form * //
   const user = await db.query("SELECT * FROM users WHERE username = $1 AND user_pw = $2", [formData.username, formData.password]);
 
-  console.log(user);
+  console.log(user.rowCount);
 
-  // Add conditional logic for if user is not found, then add a function/variable to TravelNotes context for currentUser
-  res.json(user);
+  if(user.rowCount === 1) {
+    res.json(user);
+  } else {
+    res.status(404).send("<div>User Not Found</div>");
+  }
 
 });
 

@@ -8,8 +8,12 @@ const TravelNotesContext = createContext();
 function TravelNotesProvider({ children }) {
 
   const { navigate } = useContext(NavigationContext)
+
   const [activeCountry, setActiveCountry] = useState(null);
   const [categoryList, setCategoryList] = useState([]);
+
+  const [loginFormData, setLoginFormData] = useState({ username: '', password: '' });
+  const [currentUser, setCurrentUser] = useState(null);
 
   const handleCountryClick = (e) => {
     const countryCode = e.target.id;
@@ -33,11 +37,31 @@ function TravelNotesProvider({ children }) {
     }
   };
 
+  const handleLoginSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+
+      const res = await axios.post('http://localhost:3001/login', { loginFormData });
+      console.log(res);
+
+      setCurrentUser(res.data.rows[0].username);
+
+    } catch (err) {
+      console.error(err);
+    }
+
+  }
+
   const travelNotesContextProviderObject = {
     activeCountry,
     getCountryCategories,
     categoryList,
-    handleCountryClick
+    handleCountryClick,
+    handleLoginSubmit,
+    loginFormData,
+    setLoginFormData,
+    currentUser
   };
 
   return (
