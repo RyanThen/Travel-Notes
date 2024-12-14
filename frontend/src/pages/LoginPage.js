@@ -1,23 +1,28 @@
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import TravelNotesContext from '../context/TravelNotes';
 
 function LoginPage() {
 
-  const { handleLoginSubmit, loginFormData, setLoginFormData, currentUser } = useContext(TravelNotesContext);
+  const { handleLoginSubmit, loginFormData, setLoginFormData, loginMessage, currentUser } = useContext(TravelNotesContext);
 
-  const [loginMessage, setLoginMessage] = useState('');
+  // const [loginMessage, setLoginMessage] = useState('');
 
+  // const isMounted = useRef(false);
 
-  // create custom hook for this useEffect that skips the first render
-  useEffect(() => {
-    if(currentUser) {
-      setLoginMessage(currentUser + ' is logged in');
-    } else {
-      setLoginMessage('User not found, please try again');
-    }
-  }, [currentUser]);
-  // create custom hook for this useEffect that skips the first render
+  // useEffect(() => {
+  //   if(!isMounted.current) {
+  //     isMounted.current = true;
+  //     return;
+  //   }
 
+  //   if(currentUser) {
+  //     setLoginMessage(currentUser + ' is logged in');
+  //     return;
+  //   } 
+    
+  //   setLoginMessage('User not found, please try again');
+    
+  // }, [currentUser]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -43,7 +48,7 @@ function LoginPage() {
 
       </form>
 
-      <p className="submitMessage max-w-md mt-4 mx-auto">{loginMessage}</p>
+      <p className="submitMessage max-w-md mt-4 mx-auto">{currentUser ? currentUser + ' logged in' : loginMessage}</p>
 
     </div>
   )

@@ -14,6 +14,7 @@ function TravelNotesProvider({ children }) {
 
   const [loginFormData, setLoginFormData] = useState({ username: '', password: '' });
   const [currentUser, setCurrentUser] = useState(null);
+  const [loginMessage, setLoginMessage] = useState('');
 
   const handleCountryClick = (e) => {
     const countryCode = e.target.id;
@@ -46,11 +47,14 @@ function TravelNotesProvider({ children }) {
       console.log(res);
 
       setCurrentUser(res.data.rows[0].username);
-
+        
     } catch (err) {
+      setCurrentUser(null);
+
+      setLoginMessage('User not found, please try again');
+
       console.error(err);
     }
-
   }
 
   const travelNotesContextProviderObject = {
@@ -61,6 +65,7 @@ function TravelNotesProvider({ children }) {
     handleLoginSubmit,
     loginFormData,
     setLoginFormData,
+    loginMessage,
     currentUser
   };
 

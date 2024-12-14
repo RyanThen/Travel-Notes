@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+
 import Route from './Route';
 import Link from './Link';
 
@@ -8,9 +10,11 @@ import CreateUserPage from '../pages/CreateUserPage';
 import CreateNotePage from '../pages/CreateNotePage';
 import LoginPage from '../pages/LoginPage';
 
-// ADD USER LOGIN BUTTON AND A MORE FLESHED OUT NAVIGATION INSTEAD OF JUST QUICK LINKS TO TEST PAGES.
+import TravelNotesContext from '../context/TravelNotes';
 
 function Navigation() {
+  const { currentUser, setCurrentUser } = useContext(TravelNotesContext);
+
   return (
     <div className="header-nav-container max-w-screen-xl mx-auto">
       <div className="header-nav flex justify-between">
@@ -52,12 +56,25 @@ function Navigation() {
             Create User Page
           </Link>
 
-          <Link
-            to={'/login'}
-            activeClassName="font-bold border-l-4 border-blue-500 pl-2"
-          >
-            Login Page
-          </Link>
+          { 
+          // navigation component not re-rendering when I call setCurrentUser() on the Logout button
+          !currentUser
+            ?
+              <Link
+              to={'/login'}
+              activeClassName="font-bold border-l-4 border-blue-500 pl-2"
+              >
+                Login Page
+              </Link>
+            :
+              <Link
+              to={'/'}
+              onClick={() => setCurrentUser(null)}
+              >
+                Logout
+              </Link>  
+          }
+         
         </div>
       </div>
 
