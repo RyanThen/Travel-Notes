@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 
 import TravelNotesContext from "../context/TravelNotes";
@@ -9,9 +9,10 @@ import Accordion from '../components/Accordion';
 function CountryPage() {
   const { activeCountry, categoryList } = useContext(TravelNotesContext);
 
+  const [countryStats, setCountryStats] = useState();
+
   // Next Steps:  
-  // 1. add country statistics api for useful country info
-  // 2. query the database and grab all travel notes related to each accordion title so I can add it to the accordion content (children)
+  // Query the database and grab all travel notes related to each accordion title so I can add it to the accordion content (children)
 
   const renderedCategoryList = categoryList.map((category, index) => {
     return <Accordion title={category.category_name} key={index} className="my-3">Content Here</Accordion>
@@ -23,10 +24,14 @@ function CountryPage() {
   const fetchCountryStatistics = async () => {
     const res = await axios.get(`https://restcountries.com/v3.1/alpha/${activeCountry}`);
 
-    console.log(res.data[0].name.common, res);
+    setCountryStats(res.data[0]); 
   }
 
-  fetchCountryStatistics();
+  useEffect(() => {
+    fetchCountryStatistics();
+  }, [activeCountry]);
+
+  console.log(countryStats);
 
   return (
     <div className="max-w-screen-lg mx-auto">
@@ -39,7 +44,12 @@ function CountryPage() {
             {renderedCategoryList}
         </div>
         <div className="flex flex-col country-stats-wrap">
-          <p>Name: </p>
+          <p><img class="w-20" src={countryStats?.flags.png} alt="Country flag" /></p>
+          <p>Name: {countryStats?.name.common}</p>
+          <p>Population: {countryStats?.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+          <p>Capital: {countryStats?.capital.map(capital => capital)}</p>
+          <p>Latitude: {countryStats?.latlng[0]}</p>
+          <p>Longitude: {countryStats?.latlng[1]}</p>
         </div>
       </div>
 
