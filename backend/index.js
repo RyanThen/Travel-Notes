@@ -45,11 +45,12 @@ app.get("/countries", async (req, res) => {
 });
 
 app.post("/user", async (req, res) => {
-  const formData = req.body.formData;
-  console.log(formData);
+  const userFormData = req.body.userFormData;
+  console.log(userFormData);
 
-  // * still need to sanitize fields coming from create user form * //
-  await db.query('INSERT INTO users(username, user_pw, nationality) VALUES($1, $2, $3)', [formData.username, formData.password, formData.nationality]);
+  // * Add user validation for duplicates * //
+  // * Sanitize fields coming from create user form * //
+  await db.query('INSERT INTO users(username, user_pw, nationality) VALUES($1, $2, $3)', [userFormData.username, userFormData.password, userFormData.nationality]);
 
   res.status(200);
   // res.status(200).redirect('/');

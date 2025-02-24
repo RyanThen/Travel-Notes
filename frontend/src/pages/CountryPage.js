@@ -44,7 +44,7 @@ function CountryPage() {
             {renderedCategoryList}
         </div>
         <div className="flex flex-col country-stats-wrap">
-          <p><img class="w-20" src={countryStats?.flags.png} alt="Country flag" /></p>
+          <p><img className="w-20" src={countryStats?.flags.png} alt="Country flag" /></p>
           <p>Name: {countryStats?.name.common}</p>
           <p>Population: {countryStats?.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
           <p>Capital: {countryStats?.capital.map(capital => capital)}</p>

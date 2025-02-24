@@ -5,25 +5,6 @@ function LoginPage() {
 
   const { handleLoginSubmit, loginFormData, setLoginFormData, loginMessage, currentUser } = useContext(TravelNotesContext);
 
-  // const [loginMessage, setLoginMessage] = useState('');
-
-  // const isMounted = useRef(false);
-
-  // useEffect(() => {
-  //   if(!isMounted.current) {
-  //     isMounted.current = true;
-  //     return;
-  //   }
-
-  //   if(currentUser) {
-  //     setLoginMessage(currentUser + ' is logged in');
-  //     return;
-  //   } 
-    
-  //   setLoginMessage('User not found, please try again');
-    
-  // }, [currentUser]);
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setLoginFormData((prevLoginFormData) => ({ ...prevLoginFormData, [name]: value }));
@@ -32,7 +13,7 @@ function LoginPage() {
   return (
     <div>
       
-      <form onSubmit={handleLoginSubmit} className="max-w-md mx-auto">
+      <form onSubmit={handleLoginSubmit} className="form-container max-w-md mx-auto">
 
         <div className="mb-5">
           <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
