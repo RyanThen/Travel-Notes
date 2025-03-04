@@ -20,7 +20,6 @@ function CountryPage() {
 
   console.log(categoryList);
 
-  // Add country statistics to JSX
   const fetchCountryStatistics = async () => {
     const res = await axios.get(`https://restcountries.com/v3.1/alpha/${activeCountry}`);
 

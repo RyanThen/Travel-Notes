@@ -72,6 +72,18 @@ app.post("/login", async (req, res) => {
 
 });
 
+app.post("/note", async (req, res) => {
+  const noteFormData = req.body.noteFormData;
+  console.log(noteFormData);
+
+  // * Add user validation for duplicates * //
+  // * Sanitize fields coming from create user form * //
+  // await db.query('INSERT INTO users(username, user_pw, nationality) VALUES($1, $2, $3)', [userFormData.username, userFormData.password, userFormData.nationality]);
+
+  res.status(200);
+  // res.status(200).redirect('/');
+});
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
